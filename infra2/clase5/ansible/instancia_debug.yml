@@ -1,0 +1,61 @@
+---
+- hosts: localhost
+  tasks:
+
+    - name: Crear grupo de seguridad con HTTPS, HTTP y SSH
+      amazon.aws.ec2_security_group: 
+        name: migrupo
+        vpc_id: vpc-0b4bc01c59c08e668
+        description: sg con las reglas
+        region: us-east-1
+        rules:
+          - proto: tcp
+            ports:
+              - 443
+              - 80
+              - 22
+            cidr_ip: 0.0.0.0/0
+            rule_desc: acepto todo el trafico en puerto 443, 80 y 22
+
+    - name: Creamos nuestro servidor
+      amazon.aws.ec2_instance:
+
+
+        name: instanciaEC2conClave
+        key_name: saitama
+        instance_type: t2.micro
+        security_group: migrupo
+        network:
+          assign_public_ip: true
+        image_id: ami-053b0d53c279acc90  
+        vpc_subnet_id: subnet-046fa660fb8892f9c
+        register: info
+
+
+        wait: yes
+        wait_timeout: 500
+        volumes:
+          - device_name: /dev/xvda
+            volume_type: gp2
+            volume_size: 8
+
+
+    - name: start an instance with a public IP address
+      amazon.aws.ec2_instance:
+        name: "public-compute-instance"*
+        key_name: "prod-ssh-key"*
+        vpc_subnet_id: subnet-5ca1ab1e*
+        security_group: default
+        network:
+          assign_public_ip: true
+        image_id: ami-123456
+        tags:
+          Environment: Testing
+
+    - name: IP Pública de nuestro servidor
+      debug:
+        var: info.instances[0].public_ip
+
+    - name: DNS Público de nuestro servidor
+      debug:
+       var: info.instances[0].public_dns_name

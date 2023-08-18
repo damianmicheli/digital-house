@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  tasks:
+    - name: create key pair using key_material obtained using 'file' lookup plugin
+      amazon.aws.ec2_key:
+        name: saitama
+        key_material: "{{ lookup('file', '~/Desktop/infra2/clase5/ansible/saitama.pub') }}"
+
+    - name: Crear una instancia EC2 con ip publica
+      amazon.aws.ec2_instance:
+        name: instanciaEC2conClave
+        key_name: saitama
+        instance_type: t2.micro
+        network:
+          assign_public_ip: true
+        image_id: ami-053b0d53c279acc90  

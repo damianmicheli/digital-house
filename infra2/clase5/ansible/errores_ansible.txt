@@ -1,0 +1,18 @@
+Para el error:
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "boto required for this module"}
+
+Ejecutar:
+sudo apt install python3-pip
+pip install boto
+
+
+Para el error:
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "No handler was ready to authenticate. 
+1 handlers were checked. ['HmacAuthV4Handler'] Check your credentials"}
+
+Ejecutar:
+aws configure
+
+Si les falla el playbook de creacion de bucket de S3, es porque la nueva version del modulo s3_object 
+ya no permite crear buckets, hay que usar el modulo amazon.aws.s3_bucket 
+https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html 

@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Creamos un bucket S3
+      amazon.aws.s3_bucket:
+        name: my-digitalhouse-stored-20220807
+        state: present

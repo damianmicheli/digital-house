@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: Challenge Cloudformation con varios ambientes
+
+# Mi unico parametro es para que ambiente es la instancia. Genero una lista con las
+# posibles opciones. Lo que seleccione al correr el template se guarda en "Ambiente"
+Parameters: 
+  Ambiente: 
+    Description: Seleccionar el ambiente
+    Type: String
+    Default: Desarrollo
+    AllowedValues: 
+      - Produccion
+      - Testing
+      - Desarrollo
+    ConstraintDescription: debe ser Produccion, Testing o Desarrollo
+
+# Una lista de los posibles ambientes. Por cada ambiente, sus propiedades particulares
+Mappings: 
+    TipoInstancia: 
+      Produccion: 
+        ImageId: ami-053b0d53c279acc90 # Ubuntu
+        Nombre: instancia_produccion
+        Tipo: t2.micro
+      Testing: 
+        ImageId: ami-053b0d53c279acc90 # Ubuntu
+        Nombre: instancia_testing
+        Tipo: t2.micro
+      Desarrollo: 
+        ImageId: ami-0fc682b2a42e57ca2 # Windows
+        Nombre: instancia_desarrollo
+        Tipo: t2.micro # se pide t1.micro pero no es free tier
+        
+Resources:
+  InstanciaEC2:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      AvailabilityZone: us-east-1a
+      #reemplazo por lo que esta en el mapping:
+      ImageId: !FindInMap [TipoInstancia, !Ref Ambiente, ImageId] 
+      InstanceType: !FindInMap [TipoInstancia, !Ref Ambiente, Tipo]
+      KeyName: pochita
+      Tags:
+        - Key: Name
+          Value: !FindInMap [TipoInstancia, !Ref Ambiente, Nombre]
+
+
+
+# https://docs.aws.amazon.com/es_es/AWSCloudFormation/latest/UserGuide/mappings-section-structure.html
+# https://docs.aws.amazon.com/es_es/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html
