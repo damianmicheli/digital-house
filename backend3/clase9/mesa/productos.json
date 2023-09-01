@@ -1,0 +1,58 @@
+{
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "TV",
+            "precio": 15000.0,
+            "stock": 23,
+            "codigo": "tv1093",
+            "estaPublicado": true,
+            "fechaDeCreacion": "20-5-2023"
+        },
+        {
+            "id": 2,
+            "nombre": "Celular",
+            "precio": 15000.0,
+            "stock": 23,
+            "codigo": "cel12321",
+            "estaPublicado": true,
+            "fechaDeCreacion": "20-5-2023"
+        },
+        {
+            "id": 3,
+            "nombre": "Lavarropas",
+            "precio": 15000.0,
+            "stock": 23,
+            "codigo": "lava1234",
+            "estaPublicado": true,
+            "fechaDeCreacion": "20-5-2023"
+        },
+        {
+            "id": 4,
+            "nombre": "Microondas",
+            "precio": 15000.0,
+            "stock": 23,
+            "codigo": "mic2093",
+            "estaPublicado": true,
+            "fechaDeCreacion": "20-5-2023"
+        },
+        {
+            "id": 5,
+            "nombre": "Plancha",
+            "precio": 15000.0,
+            "stock": 23,
+            "codigo": "pla1257",
+            "estaPublicado": true,
+            "fechaDeCreacion": "20-5-2023"
+        },
+        {
+            "id": 6,
+            "nombre": "Heladera",
+            "precio": 15000.0,
+            "stock": 23,
+            "codigo": "hel6243",
+            "estaPublicado": true,
+            "fechaDeCreacion": "20-5-2023"
+        }
+    ]
+}
