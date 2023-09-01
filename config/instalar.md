@@ -44,7 +44,8 @@ chmod +x script.sh
 ## instalar go
 ### Descargar desde: https://go.dev/doc/install
 
-sudo rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go 
+tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
 nano $HOME/.profile
 ### y agregar esta linea al final:
 export PATH=$PATH:/usr/local/go/bin
@@ -58,9 +59,9 @@ ssh -i pochita.pem ubuntu@3.91.218.181
 
 ## si no anda bien ansible
 sudo apt install python3-pip
-
 pip install boto3
 ansible-galaxy collection install amazon.aws
+
 ### esto no se si hace falta
 sudo apt-add-repository ppa:ansible/ansible
 pip install boto
@@ -69,4 +70,12 @@ pip install boto
 ## editar hosts de ansible (si no existe crearlo)
 sudo nano /etc/ansible/hosts
 
+## Cool Retro Term
+sudo apt install cool-retro-term
 
+## GO
+### Instalar GO
+sudo apt install golang-go
+
+### editar ~/.profile:
+export PATH=$PATH:/usr/local/go/bin
