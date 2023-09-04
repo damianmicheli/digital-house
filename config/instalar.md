@@ -16,6 +16,11 @@ export PATH=$PATH:/usr/local/go/bin
 git config --global user.name "Damián Micheli"
 git config --global user.email damianmicheli@gmail.com
 
+## github cli para no tener que cargar siempre la contraseña (token)
+sudo apt install gh
+gh auth login
+
+
 ## only office
 sudo snap install onlyoffice-desktopeditors
 
@@ -44,9 +49,7 @@ Default output format [None]: json
 
 
 
-## github cli para no tener que cargar siempre la contraseña (token)
-sudo apt install gh
-gh auth login
+
 
 ## crear llave ssh
 ssh-keygen
